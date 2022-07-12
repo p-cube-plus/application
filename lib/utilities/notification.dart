@@ -9,7 +9,7 @@ class Alarm {
   void initState() async {
     // android 알림 설정: 아이콘 설정 가능
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     // ios 알림 설정: 소리, 뱃지 등 설정 가능
     const initializationSettingsIOS = IOSInitializationSettings();
 

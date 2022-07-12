@@ -29,6 +29,19 @@ class ThemeSetting implements ISetting {
   get item => themeMode;
 }
 
+class NoticeAllSetting implements ISetting {
+  bool flag = true;
+
+  @override
+  bool get isOn => flag;
+
+  @override
+  void toggle(bool isOn) => flag = isOn;
+
+  @override
+  get item => flag;
+}
+
 class NoticeSetting implements ISetting {
   bool flag = true;
 
@@ -45,7 +58,7 @@ class NoticeSetting implements ISetting {
 class SettingProvider with ChangeNotifier {
   late ISetting curState;
   final theme = ThemeSetting();
-  final allNotice = NoticeSetting();
+  final allNotice = NoticeAllSetting();
   final notices = List<NoticeSetting>.generate(5, (index) => NoticeSetting());
 
   void changeState(SettingType type) {
@@ -77,22 +90,6 @@ class SettingProvider with ChangeNotifier {
 
   void toggle(bool isOn) {
     curState.toggle(isOn);
-
-    if (curState == allNotice) {
-      notices.forEach((element) {
-        element.toggle(isOn);
-      });
-    } else if (curState != theme) {
-      bool isAll = true;
-      for (var element in notices) {
-        if (element.item != isOn) {
-          isAll = false;
-          break;
-        }
-      }
-      if (isAll) allNotice.toggle(isOn);
-    }
-
     notifyListeners();
   }
 

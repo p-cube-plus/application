@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:p_cube_plus_application/providers/setting_provider.dart';
 import 'package:p_cube_plus_application/widgets/default_page_widget.dart';
-import 'package:p_cube_plus_application/widgets/setting/divider_widget.dart';
 import 'package:p_cube_plus_application/widgets/setting/new_page_tile.dart';
 import 'package:p_cube_plus_application/widgets/setting/switch_tile.dart';
 
 import '../../widgets/alert_frame.dart';
 import '../../widgets/list_divider_widget.dart';
 import '../../widgets/setting/alert_tile.dart';
-import '../../widgets/setting/maintitle_tile.dart';
 import '../../widgets/setting/version_tile.dart';
 import '../logout_page.dart';
 import 'setting_notice_page.dart';
@@ -27,16 +25,20 @@ class SettingPage extends StatelessWidget {
           ListDivider(),
           VersionTile(title: '버전'),
           AlertTile(
-              title: '피드백 보내기', hasIcon: true, alertWidget: _getFeedback()),
-          AlertTile(title: '개발진 목록', hasIcon: true, alertWidget: _getDev()),
+              title: '피드백 보내기',
+              hasIcon: true,
+              alertWidget: _getFeedback(context)),
+          AlertTile(
+              title: '개발진 목록', hasIcon: true, alertWidget: _getDev(context)),
           ListDivider(),
-          AlertTile(title: '로그아웃', hasIcon: false, alertWidget: _getLogout()),
+          AlertTile(
+              title: '로그아웃', hasIcon: false, alertWidget: _getLogout(context)),
         ],
       ),
     );
   }
 
-  _getFeedback() {
+  _getFeedback(context) {
     return AlertFrame(
       title: Text(
         '피드백 보내기',
@@ -61,20 +63,19 @@ class SettingPage extends StatelessWidget {
           textAlign: TextAlign.start,
         ),
       ],
-      okWidget: _getOKFeedback(),
+      okWidget: _getOKFeedback(context),
     );
   }
 
-  _getOKFeedback() {
+  _getOKFeedback(context) {
     return AlertFrame(
       title: Align(
         child: Column(
           children: [
             SizedBox(height: 15),
-            Text('피드백이 제출되었습니다!', style: TextStyle(fontSize: 18)),
+            Text('피드백이 제출되었습니다!', style: Theme.of(context).textTheme.headline1),
             SizedBox(height: 10),
-            Text('소중한 의견 감사합니다.',
-                style: TextStyle(fontSize: 15, color: Colors.white54)),
+            Text('소중한 의견 감사합니다.', style: Theme.of(context).textTheme.headline2),
           ],
         ),
         alignment: Alignment.center,
@@ -84,7 +85,7 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  _getDev() {
+  _getDev(context) {
     return AlertFrame(
       title: Column(
         children: [
@@ -95,7 +96,7 @@ class SettingPage extends StatelessWidget {
           SizedBox(height: 3),
           Align(
             child: Text('PCube+의 개발진 목록입니다.',
-                style: TextStyle(fontSize: 14, color: Colors.white54)),
+                style: Theme.of(context).textTheme.headline2),
             alignment: Alignment.centerLeft,
           ),
         ],
@@ -106,10 +107,10 @@ class SettingPage extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('오창한', style: TextStyle(fontSize: 14, color: Colors.white70)),
-            Text('권오민', style: TextStyle(fontSize: 14, color: Colors.white70)),
-            Text('조승빈', style: TextStyle(fontSize: 14, color: Colors.white70)),
-            Text('신혜민', style: TextStyle(fontSize: 14, color: Colors.white70)),
+            Text('오창한', style: Theme.of(context).textTheme.headline2),
+            Text('권오민', style: Theme.of(context).textTheme.headline2),
+            Text('조승빈', style: Theme.of(context).textTheme.headline2),
+            Text('신혜민', style: Theme.of(context).textTheme.headline2),
           ],
         ),
         SizedBox(height: 20),
@@ -117,7 +118,7 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  _getLogout() {
+  _getLogout(context) {
     return AlertFrame(
       title: Align(
         child: Column(

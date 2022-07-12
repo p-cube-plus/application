@@ -31,8 +31,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<SettingProvider>(context);
     themeProvider.changeState(SettingType.Theme);
-    Alarm alarm = Alarm();
-    alarm.initState();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'PCube+', // 탭 이름
