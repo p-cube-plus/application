@@ -21,6 +21,7 @@ class VersionTile extends SettingTile {
           return Container(
             height: super.height,
             child: Container(
+              padding: super.default_padding,
               child: Row(
                 children: [
                   //SizedBox(width: super.blank),

@@ -14,6 +14,7 @@ class NewPageTile extends SettingTile {
         onTap: () => tapFunc(context),
         child: Container(
           //color: super.background,
+          padding: super.default_padding,
           child: Row(
             children: [
               //SizedBox(width: super.blank),

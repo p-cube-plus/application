@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:p_cube_plus_application/screens/user_informations/user_information_page.dart';
+import '../../utilities/contants.dart' as Constants;
 
 import 'home_page.dart';
 import 'notice_page.dart';
@@ -10,8 +11,8 @@ class PageControll extends StatefulWidget {
 }
 
 class _PageControllState extends State<PageControll> {
-  int _idx = 0;
-  final pageController = PageController();
+  int _idx = 1;
+  final pageController = PageController(initialPage: 1);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +25,8 @@ class _PageControllState extends State<PageControll> {
           });
         },
         children: [
-          HomePage(),
           NoticePage(),
+          HomePage(),
           UserInformationPage(),
         ],
         physics: NeverScrollableScrollPhysics(),
@@ -35,17 +36,56 @@ class _PageControllState extends State<PageControll> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         iconSize: 32,
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
-          BottomNavigationBarItem(icon: Icon(Icons.alarm), label: '알림'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: '설정'),
+          BottomNavigationBarItem(
+            icon: Constants.Icons.GetIcon(
+              Constants.Icons.bell,
+              color: Theme.of(context)
+                  .bottomNavigationBarTheme
+                  .unselectedItemColor,
+            ),
+            activeIcon: Constants.Icons.GetIcon(
+              Constants.Icons.selected_bell,
+              color:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            ),
+            label: '알림',
+          ),
+          BottomNavigationBarItem(
+            icon: Constants.Icons.GetIcon(
+              Constants.Icons.home,
+              color: Theme.of(context)
+                  .bottomNavigationBarTheme
+                  .unselectedItemColor,
+            ),
+            activeIcon: Constants.Icons.GetIcon(
+              Constants.Icons.selected_home,
+              color:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            ),
+            label: '홈',
+          ),
+          BottomNavigationBarItem(
+            icon: Constants.Icons.GetIcon(
+              Constants.Icons.user,
+              color: Theme.of(context)
+                  .bottomNavigationBarTheme
+                  .unselectedItemColor,
+            ),
+            activeIcon: Constants.Icons.GetIcon(
+              Constants.Icons.selected_user,
+              color:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            ),
+            label: '설정',
+          ),
         ],
         onTap: (int index) {
           pageController.jumpToPage(index);
         },
         currentIndex: _idx,
-        selectedIconTheme:
-            IconThemeData(color: Color.fromARGB(255, 252, 73, 73)),
       ),
     );
   }

@@ -15,6 +15,7 @@ class SettingNoticePage extends StatelessWidget {
     return DefaultPage(
       appBarTitle: "알림 설정",
       appBarHasPrevious: true,
+      padding: 0.0,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _getChildren(noticeProvider),

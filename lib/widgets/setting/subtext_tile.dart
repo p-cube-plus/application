@@ -8,14 +8,17 @@ class SubTextTile extends SettingTile {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            //SizedBox(width: super.blank),
-            Text(
-              title,
-              style: TextStyle(fontSize: 12, color: Colors.white70),
-            ),
-          ],
+        Padding(
+          padding: super.default_padding,
+          child: Row(
+            children: [
+              //SizedBox(width: super.blank),
+              Text(
+                title,
+                style: TextStyle(fontSize: 12, color: Colors.white70),
+              ),
+            ],
+          ),
         ),
         //SizedBox(height: super.blank / 2),
       ],

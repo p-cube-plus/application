@@ -19,8 +19,11 @@ class AlertTile extends SettingTile {
           showDialog(context: context, builder: (context) => alertWidget);
         },
         child: Container(
-          child: Row(
-            children: _getChildren(),
+          child: Padding(
+            padding: super.default_padding,
+            child: Row(
+              children: _getChildren(),
+            ),
           ),
         ),
       ),

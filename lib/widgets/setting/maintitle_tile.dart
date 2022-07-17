@@ -7,20 +7,23 @@ class MainTitleTile extends SettingTile {
   @override
   Widget build(BuildContext context) {
     return Align(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              //SizedBox(width: super.blank),
-              Text(
-                title,
-                style:
-                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          //SizedBox(height: super.blank),
-        ],
+      child: Padding(
+        padding: super.default_padding,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                //SizedBox(width: super.blank),
+                Text(
+                  title,
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            //SizedBox(height: super.blank),
+          ],
+        ),
       ),
       alignment: Alignment.centerLeft,
     );

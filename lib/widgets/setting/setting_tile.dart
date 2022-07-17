@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 abstract class SettingTile extends StatelessWidget {
   final height = 50.0;
   final blank = 20.0;
+  final default_padding = EdgeInsets.symmetric(horizontal: 20.0);
   final background = Colors.white70;
   final title;
 

@@ -10,12 +10,14 @@ class DefaultPage extends StatelessWidget {
     this.appBarActions,
     this.appBarHasPrevious,
     this.content,
+    this.padding,
   }) : super(key: key);
 
   final String appBarTitle;
   final List<Widget>? appBarActions;
   final bool? appBarHasPrevious;
   final Widget? content;
+  final double? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +29,23 @@ class DefaultPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomAppBar(
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: CustomAppBar(
               title: appBarTitle,
               actions: appBarActions,
               hasPrevious: appBarHasPrevious,
             ),
-            Expanded(child: SingleChildScrollView(child: content)),
-          ],
-        ),
+          ),
+          Expanded(
+              child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: padding ?? 20.0),
+            child: SingleChildScrollView(child: content),
+          )),
+        ],
       ),
       resizeToAvoidBottomInset: false,
     );

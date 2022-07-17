@@ -25,6 +25,7 @@ class SwitchTile extends SettingTile {
         },
         child: Container(
           //color: Colors.white70, //배경색
+          padding: super.default_padding,
           child: Row(
             children: [
               //SizedBox(width: super.blank),

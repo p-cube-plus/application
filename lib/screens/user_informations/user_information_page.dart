@@ -13,6 +13,7 @@ import '../../widgets/rounded_border_widget.dart';
 
 import '../mainpage/setting_page.dart';
 import 'seminar_list_page.dart';
+import '../../utilities/contants.dart' as Constants;
 
 class UserInformationPage extends StatelessWidget {
   const UserInformationPage({Key? key}) : super(key: key);
@@ -389,10 +390,9 @@ class ProfileView extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Color(0xFFE9E9E9),
                     ),
-                    child: const Icon(
-                      Icons.person,
-                      color: Color(0xFFD5D5D5),
-                      size: 36.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Constants.Icons.GetIcon(Constants.Icons.profile),
                     ),
                   )
                 : Container(

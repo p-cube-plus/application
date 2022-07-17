@@ -17,12 +17,13 @@ class SettingPage extends StatelessWidget {
     return DefaultPage(
       appBarTitle: "설정",
       appBarHasPrevious: true,
+      padding: 0.0,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           NewPageTile(title: '알림 설정', newPage: SettingNoticePage()),
           SwitchTile(title: '다크 모드', type: SettingType.Theme),
-          ListDivider(),
+          ListDivider(padding: 20.0),
           VersionTile(title: '버전'),
           AlertTile(
               title: '피드백 보내기',
