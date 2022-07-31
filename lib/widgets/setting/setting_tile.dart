@@ -11,9 +11,16 @@ import 'package:flutter/material.dart';
 abstract class SettingTile extends StatelessWidget {
   final height = 50.0;
   final blank = 20.0;
-  final default_padding = EdgeInsets.symmetric(horizontal: 20.0);
+  final defaultFontSize = 12.0;
+  final defaultPadding = EdgeInsets.symmetric(horizontal: 20.0);
   final background = Colors.white70;
   final title;
+
+  TextStyle getTextStyle(context) =>
+      Theme.of(context).textTheme.headlineSmall!.copyWith(
+            fontSize: defaultFontSize,
+            fontWeight: FontWeight.w400,
+          );
 
   SettingTile({required String this.title});
 }

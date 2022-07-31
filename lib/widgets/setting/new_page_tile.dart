@@ -13,15 +13,15 @@ class NewPageTile extends SettingTile {
       child: InkWell(
         onTap: () => tapFunc(context),
         child: Container(
-          //color: super.background,
-          padding: super.default_padding,
+          padding: super.defaultPadding,
           child: Row(
             children: [
-              //SizedBox(width: super.blank),
-              Text(title),
+              Text(
+                title,
+                style: getTextStyle(context),
+              ),
               const Spacer(),
-              const Icon(Icons.arrow_forward_ios, size: 15),
-              //SizedBox(width: super.blank),
+              Icon(Icons.arrow_forward_ios, size: defaultFontSize),
             ],
           ),
         ),

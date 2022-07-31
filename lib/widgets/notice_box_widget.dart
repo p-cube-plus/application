@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/notice_box.dart';
+import '../sevices/notice_client.dart';
 
 class NoticeBoxWidget extends StatelessWidget {
   const NoticeBoxWidget(this._box);
 
-  final NoticeBox _box;
+  final NotificationNode _box;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class NoticeBoxWidget extends StatelessWidget {
                     Icons.lock_clock,
                     size: 32,
                   ),
-                  trailing: Text(_box.date,
+                  trailing: Text(_box.date.toString(),
                       style: const TextStyle(
                         fontSize: 15,
                         height: 0,
                       )),
                   title: Text(
-                    _box.title,
+                    _box.id.toString(),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -36,7 +36,7 @@ class NoticeBoxWidget extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    _box.description,
+                    _box.description!,
                     style: const TextStyle(
                       fontSize: 14,
                       height: 1.8,

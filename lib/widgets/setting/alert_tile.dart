@@ -20,9 +20,9 @@ class AlertTile extends SettingTile {
         },
         child: Container(
           child: Padding(
-            padding: super.default_padding,
+            padding: super.defaultPadding,
             child: Row(
-              children: _getChildren(),
+              children: _getChildren(context),
             ),
           ),
         ),
@@ -30,14 +30,12 @@ class AlertTile extends SettingTile {
     );
   }
 
-  List<Widget> _getChildren() {
+  List<Widget> _getChildren(context) {
     final result = <Widget>[];
-    //result.add(SizedBox(width: super.blank));
-    result.add(Text(super.title));
+    result.add(Text(super.title, style: getTextStyle(context)));
     if (hasIcon) {
       result.add(const Spacer());
-      result.add(Icon(Icons.arrow_forward_ios, size: 15));
-      //result.add(SizedBox(width: super.blank));
+      result.add(Icon(Icons.arrow_forward_ios, size: defaultFontSize));
     }
     return result;
   }

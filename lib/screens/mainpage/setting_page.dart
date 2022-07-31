@@ -31,7 +31,7 @@ class SettingPage extends StatelessWidget {
               alertWidget: _getFeedback(context)),
           AlertTile(
               title: '개발진 목록', hasIcon: true, alertWidget: _getDev(context)),
-          ListDivider(),
+          ListDivider(padding: 20.0),
           AlertTile(
               title: '로그아웃', hasIcon: false, alertWidget: _getLogout(context)),
         ],

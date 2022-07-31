@@ -8,20 +8,17 @@ class MainTitleTile extends SettingTile {
   Widget build(BuildContext context) {
     return Align(
       child: Padding(
-        padding: super.default_padding,
+        padding: super.defaultPadding,
         child: Column(
           children: [
             Row(
               children: [
-                //SizedBox(width: super.blank),
                 Text(
                   title,
-                  style: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.bold),
+                  style: getTextStyle(context),
                 ),
               ],
             ),
-            //SizedBox(height: super.blank),
           ],
         ),
       ),

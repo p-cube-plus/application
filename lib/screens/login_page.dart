@@ -150,26 +150,26 @@ class _LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            await cancelNotification();
-            await requestPermissions();
-            final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-            await registerMessage(
-              hour: now.hour,
-              minutes: now.minute + 1,
-              message: 'Hello, world!',
-            );
-          },
-          child: const Text('Show Notification'),
-        ),
-      ),
-      //body: const SingleChildScrollView(
-      //  child: Center(
-      //    child: _MainLogin(),
+      //body: Center(
+      //  child: ElevatedButton(
+      //    onPressed: () async {
+      //      await cancelNotification();
+      //      await requestPermissions();
+      //      final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+      //      await registerMessage(
+      //        hour: now.hour,
+      //        minutes: now.minute + 1,
+      //        message: 'Hello, world!',
+      //      );
+      //    },
+      //    child: const Text('Show Notification'),
       //  ),
       //),
+      body: const SingleChildScrollView(
+        child: Center(
+          child: _MainLogin(),
+        ),
+      ),
     );
   }
 }

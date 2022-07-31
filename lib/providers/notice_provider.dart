@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/notice_box.dart';
+import '../sevices/notice_client.dart';
 
 enum SortType {
   Ascending,
@@ -10,11 +10,11 @@ class NoticeProvider with ChangeNotifier {
   // DUMMY
   bool isFirst = true;
 
-  List<NoticeBox> curList = [];
+  List<NotificationNode> curList = [];
   SortType _sortType = SortType.Ascending;
 
   // 새 알림을 얻는 함수
-  void getNotice(NoticeBox notice) {
+  void getNotice(NotificationNode notice) {
     curList.add(notice);
     _sort();
     notifyListeners();
@@ -36,10 +36,10 @@ class NoticeProvider with ChangeNotifier {
   void _sort() {
     switch (_sortType) {
       case SortType.Ascending:
-        curList.sort((a, b) => (a.date).compareTo(b.date));
+        curList.sort((a, b) => (a.date!).compareTo(b.date!));
         break;
       case SortType.Descending:
-        curList.sort((a, b) => (b.date).compareTo(a.date));
+        curList.sort((a, b) => (b.date!).compareTo(a.date!));
         break;
     }
   }

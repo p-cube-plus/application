@@ -4,20 +4,28 @@ import 'package:p_cube_plus_application/widgets/default_page_widget.dart';
 import 'package:p_cube_plus_application/widgets/notice_box_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/notice_box.dart';
+import '../../models/caution.dart';
 
-class NoticePage extends StatelessWidget {
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
+class NoticePage extends StatefulWidget {
+  @override
+  State<NoticePage> createState() => _NoticePageState();
+}
+
+class _NoticePageState extends State<NoticePage> {
+  Future<Caution>? info;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var product = Provider.of<NoticeProvider>(context);
-
-    if (product.isFirst) {
-      product.getNotice(new NoticeBox('청소 알림', '당일 hh시에 청소가 시작됩니다.', '1:00'));
-      product.getNotice(new NoticeBox('회비 알림', '당일 hh시에 어쩌구저쩌구', '2:00'));
-      product.getNotice(new NoticeBox('도서 반납 알림', '당일 hh시에 어쩌구저쩌구', '4:00'));
-      product.getNotice(new NoticeBox('회의 알림', '당일 hh시에 어쩌구저쩌구', '3:00'));
-      product.isFirst = false;
-    }
 
     return DefaultPage(
       appBarTitle: "알림",

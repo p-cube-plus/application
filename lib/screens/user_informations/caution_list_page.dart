@@ -45,7 +45,7 @@ class CautionListPage extends StatelessWidget {
                       userProvider: userProvider,
                       mode: 1,
                     ),
-                    ListDivider(),
+                    ListDivider(padding: 20.0),
                     CautionListView(
                       title: "차감 내역",
                       userProvider: userProvider,

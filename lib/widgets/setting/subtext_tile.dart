@@ -9,18 +9,16 @@ class SubTextTile extends SettingTile {
     return Column(
       children: [
         Padding(
-          padding: super.default_padding,
+          padding: super.defaultPadding,
           child: Row(
             children: [
-              //SizedBox(width: super.blank),
               Text(
                 title,
-                style: TextStyle(fontSize: 12, color: Colors.white70),
+                style: getTextStyle(context),
               ),
             ],
           ),
         ),
-        //SizedBox(height: super.blank / 2),
       ],
     );
   }

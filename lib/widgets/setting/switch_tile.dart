@@ -24,12 +24,10 @@ class SwitchTile extends SettingTile {
           themeProvider.toggle(_value);
         },
         child: Container(
-          //color: Colors.white70, //배경색
-          padding: super.default_padding,
+          padding: super.defaultPadding,
           child: Row(
             children: [
-              //SizedBox(width: super.blank),
-              Text(super.title),
+              Text(super.title, style: getTextStyle(context)),
               const Spacer(),
               Transform.scale(
                 scale: 0.7,
@@ -53,7 +51,6 @@ class SwitchTile extends SettingTile {
                   ),
                 ),
               ),
-              //SizedBox(width: super.blank / 2),
             ],
           ),
         ),
