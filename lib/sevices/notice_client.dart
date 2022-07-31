@@ -4,12 +4,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'notice_client.g.dart';
 
-@RestApi(baseUrl: "p-cube-plus.com/user/")
+@RestApi(baseUrl: "http://p-cube-plus.com")
 abstract class NotificationClient {
   factory NotificationClient(Dio dio, {String baseUrl}) = _NotificationClient;
 
-  @GET("/notification") // 해당 api 경로
-  Future<Map<String, List<NotificationNode>>> getListData();
+  @GET("/user/notification") // 해당 api 경로
+  Future<List<NotificationNode>> getListData();
   //@Header("user_id") String userId,
   //@Header("Authorization") String token,
   //@Body() PracticeRequest request);
@@ -17,8 +17,8 @@ abstract class NotificationClient {
 
 @JsonSerializable()
 class NotificationNode {
-  final String? date;
-  final String? description;
+  final String date;
+  final String description;
   final int id;
   final String name;
   final int type;

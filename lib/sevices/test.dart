@@ -13,22 +13,27 @@ class TestPage extends StatelessWidget {
     final dio = Dio();
     dio.options.headers["Content-Type"] = "application/json";
     final client = NotificationClient(dio);
+    client.getListData();
 
     return Scaffold(body:
         StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
       return FutureBuilder(
           future: client.getListData(),
-          initialData: [],
           builder: (context, AsyncSnapshot snapshot) {
             // response body가 받아와지는 동안 로딩
             //if (snapshot.connectionState == ConnectionState.waiting)
             //  return Center(
             //    child: CircularProgressIndicator(),
             //  );
+            var result = snapshot.data as List<NotificationNode>;
 
-            print("테스트: " + snapshot.data);
+            String str = "";
+            for (var notification in result) {
+              print("테스트: " + notification.description);
+              str += "테스트: " + notification.description + "\n";
+            }
 
-            return Text("테스트: " + snapshot.data);
+            return Text(str);
             //return SingleChildScrollView(
             //    child: Container(
             //  height: 700,

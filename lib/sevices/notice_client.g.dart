@@ -8,8 +8,8 @@ part of 'notice_client.dart';
 
 NotificationNode _$NotificationNodeFromJson(Map<String, dynamic> json) =>
     NotificationNode(
-      date: json['date'] as String?,
-      description: json['description'] as String?,
+      date: json['date'] as String,
+      description: json['description'] as String,
       id: json['id'] as int,
       name: json['name'] as String,
       type: json['type'] as int,
@@ -32,7 +32,7 @@ Map<String, dynamic> _$NotificationNodeToJson(NotificationNode instance) =>
 
 class _NotificationClient implements NotificationClient {
   _NotificationClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'p-cube-plus.com/user/';
+    baseUrl ??= 'http://p-cube-plus.com';
   }
 
   final Dio _dio;
@@ -40,25 +40,23 @@ class _NotificationClient implements NotificationClient {
   String? baseUrl;
 
   @override
-  Future<Map<String, List<NotificationNode>>> getListData() async {
+  Future<List<NotificationNode>> getListData() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
 
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Map<String, List<NotificationNode>>>(
+        _setStreamType<Map<String, dynamic>>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/notification',
+                .compose(_dio.options, '/user/notification',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!['notification_list'] as List<dynamic>;
 
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
-        k,
-        (v as List)
-            .map((i) => NotificationNode.fromJson(i as Map<String, dynamic>))
-            .toList()));
-    return value;
+    return value
+        .map<NotificationNode>((e) => NotificationNode.fromJson(e))
+        .toList();
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
