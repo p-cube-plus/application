@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:p_cube_plus_application/screens/main_page.dart';
 import 'package:provider/provider.dart';
 import '../utilities/contants.dart' as Constants;
@@ -18,10 +19,39 @@ class LoginPage extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                child: Constants.Icons.GetIcon(Constants.Icons.main_logo),
-                height: 168,
-                width: 138,
-              ),
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset('assets/images/pq-logo-text.svg',
+                      width: 280),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('판도라큐브에 ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1!
+                              .copyWith(
+                                  fontSize: 16, fontWeight: FontWeight.w700)),
+                      Text('플러스',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1!
+                              .copyWith(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xCCDE2B13))),
+                      Text('가 되다',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1!
+                              .copyWith(
+                                  fontSize: 16, fontWeight: FontWeight.w700)),
+                    ],
+                  ),
+                ],
+              )),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 70),
@@ -60,10 +90,10 @@ class _ShowButton extends StatelessWidget {
                       child: Constants.Icons.GetIcon(Constants.Icons.naver)),
                 ),
                 Text("네이버 아이디로 로그인",
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white)),
+                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700)),
               ],
             ),
           ),

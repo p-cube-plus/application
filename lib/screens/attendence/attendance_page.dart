@@ -134,6 +134,9 @@ class _AttendancePageState extends State<AttendancePage>
     await BeaconsPlugin.addBeaconLayoutForAndroid(
         "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24");
 
+    await BeaconsPlugin.addRegionForIOS(
+        "e2c56db5-dffb-48d2-b060-d0f5a71096e0", 40011, 29127, 'Pcube+');
+
     // foreground 세팅
     print("시간 세팅 등록");
     await BeaconsPlugin.setForegroundScanPeriodForAndroid(
