@@ -1,0 +1,123 @@
+name: p_cube_plus_application
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+    sdk: ">=2.12.0 <3.2.0"
+
+dependencies:
+    flutter:
+        sdk: flutter
+    dio:
+    json_annotation:
+    retrofit:
+    url_launcher: ^6.1.4
+    fluttertoast: ^8.0.9
+
+    # The following adds the Cupertino Icons font to your application.
+    # Use with the CupertinoIcons class for iOS style icons.
+    cupertino_icons: ^1.0.2
+
+    # 추가 외부 패키지
+    english_words: ^4.0.0
+    flutter_local_notifications: ^9.5.2
+    flutter_screenutil: ^5.5.2
+    provider: ^6.0.2
+    lint: ^1.8.2
+    flutter_native_splash: ^2.1.6
+    flutter_settings_screens: ^0.3.2-null-safety
+    package_info_plus: ^1.4.2
+    flutter_app_badger: ^1.4.0
+    flutter_naver_login: ^1.8.0
+    intl: ^0.17.0
+    flutter_svg: ^1.1.1+1
+    http: ^0.13.5
+    scan: ^1.6.0
+    flutter_switch: ^0.3.2
+    beacons_plugin: ^2.0.8
+    permission_handler: ^10.4.3
+    lottie: ^2.6.0
+
+dev_dependencies:
+    flutter_launcher_icons: "^0.9.2"
+    flutter_test:
+        sdk: flutter
+    retrofit_generator:
+    build_runner:
+    json_serializable:
+    change_app_package_name: ^1.0.0
+
+# 앱 아이콘
+# 이미지 설정 후 아래 명령어 사용
+# flutter pub run flutter_launcher_icons:main
+flutter_icons:
+    android: "launcher_icon"
+    ios: true
+    image_path: "assets/images/symbol.png"
+
+# 앱 시작 시 로딩 화면
+# 설정 후 아래 명령어 사용
+# flutter pub run flutter_native_splash:remove
+# flutter pub run flutter_native_splash:create
+flutter_native_splash:
+    color: "#ffffff"
+    image: "assets/images/symbol.png"
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+    # The following line ensures that the Material Icons font is
+    # included with your application, so that you can use the icons in
+    # the material Icons class.
+    uses-material-design: true
+
+    # To add assets to your application, add an assets section, like this:
+    assets:
+        - assets/images/
+        - assets/images/icons/
+        - assets/lottie/
+
+    # An image asset can refer to one or more resolution-specific "variants", see
+    # https://flutter.dev/assets-and-images/#resolution-aware.
+
+    # For details regarding adding assets from package dependencies, see
+    # https://flutter.dev/assets-and-images/#from-packages
+
+    # To add custom fonts to your application, add a fonts section here,
+    # in this "flutter" section. Each entry in this list should have a
+    # "family" key with the font family name, and a "fonts" key with a
+    # list giving the asset and other descriptors for the font. For
+    # example:
+    fonts:
+        - family: SpoqaHanSansNeo
+          fonts:
+              - asset: assets/font/SpoqaHanSansNeo-Thin.ttf
+                weight: 100
+              - asset: assets/font/SpoqaHanSansNeo-Light.ttf
+                weight: 300
+              - asset: assets/font/SpoqaHanSansNeo-Regular.ttf
+                weight: 400
+              - asset: assets/font/SpoqaHanSansNeo-Medium.ttf
+                weight: 500
+              - asset: assets/font/SpoqaHanSansNeo-Bold.ttf
+                weight: 700
+
+    # For details regarding fonts from package dependencies,
+    # see https://flutter.dev/custom-fonts/#from-packages
