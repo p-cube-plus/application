@@ -26,7 +26,7 @@ class _PartMettingPageState extends State<PartMettingPage> {
           height: 20,
           child: ElevatedButton(
               onPressed: () => setState(() => _isEditing = !_isEditing),
-              child: Text(_isEditing ? editText : saveText,
+              child: Text(_isEditing ? saveText : editText,
                   style: Theme.of(context)
                       .textTheme
                       .headlineSmall!
@@ -38,8 +38,7 @@ class _PartMettingPageState extends State<PartMettingPage> {
         ),
       ),
       bottomButton: _isEditing
-          ? null
-          : ElevatedButton(
+          ? ElevatedButton(
               onPressed: () => {},
               child: Text(
                 "삭제하기",
@@ -48,10 +47,11 @@ class _PartMettingPageState extends State<PartMettingPage> {
                     .headlineMedium!
                     .copyWith(fontSize: 16.0, fontWeight: FontWeight.w700),
               ),
-            ),
-      floatingActionButton: _isEditing ? _getFloatingButton(context) : null,
+            )
+          : null,
+      floatingActionButton: _isEditing ? null : _getFloatingButton(context),
       content: DefaultTabBar(
-        canMove: _isEditing,
+        canMove: !_isEditing,
         isCenter: true,
         tabs: [
           _getTabWidget("디자인"),
@@ -128,7 +128,7 @@ class _PartMettingBox extends StatelessWidget {
         hasShadow: false,
         child: Row(
           children: [
-            if (!isEditing)
+            if (isEditing)
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: RoundedBorder(
@@ -142,11 +142,11 @@ class _PartMettingBox extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 onTap: isEditing
-                    ? () =>
+                    ? null
+                    : () =>
                         Navigator.push(context, MaterialPageRoute(builder: (_) {
                           return SetNotificationPage(title);
-                        }))
-                    : null,
+                        })),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

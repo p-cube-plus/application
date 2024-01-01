@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:p_cube_plus_application/screens/executives/notification/cleaning_notification_page.dart';
+import 'package:p_cube_plus_application/screens/executives/notification/fee_notification_page.dart';
 import 'package:p_cube_plus_application/screens/executives/notification/part_meeting_padge.dart';
 import 'package:p_cube_plus_application/screens/executives/notification/set_notification_page.dart';
 
@@ -22,7 +23,7 @@ class ExecutiveNotificationPage extends StatelessWidget {
             SizedBox(height: 10),
             _getButton(context, "파트회의 알림", PartMettingPage()),
             SizedBox(height: 10),
-            _getButton(context, "회비 알림", SetNotificationPage("회비 알림")),
+            _getButton(context, "회비 알림", FeeNotificationPage()),
             SizedBox(height: 10),
             _getButton(context, "청소 알림", CleaningNotificationPage()),
             SizedBox(height: 10),
