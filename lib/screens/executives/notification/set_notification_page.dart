@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:p_cube_plus_application/widgets/executive/notification/alarm_active.dart';
 import 'package:p_cube_plus_application/widgets/executive/notification/required_text.dart';
 
 import '../../../widgets/executive/notification/notifitation_input.dart';
@@ -22,12 +23,14 @@ class SetNotificationPage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            AlarmActive(),
+            const SizedBox(height: 16),
             SetNotification(),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             NotificationInput(RequiredText(text: "장소")),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             NotificationInput(RequiredText(text: "일정")),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             NotificationInput(RequiredText(text: "메모", isRequired: false)),
           ],
         ),

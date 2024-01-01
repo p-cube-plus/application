@@ -15,11 +15,13 @@ class DefaultTabBar extends StatefulWidget {
     required this.tabs,
     this.isCenter = false,
     this.tabHeight = 2,
+    this.canMove = true,
   }) : super(key: key);
 
   final List<DefaultTab> tabs;
   final bool isCenter;
   final double tabHeight;
+  final bool canMove;
 
   @override
   State<DefaultTabBar> createState() => _DefaultTabBarState();
@@ -77,7 +79,9 @@ class _DefaultTabBarState extends State<DefaultTabBar>
         ),
         Expanded(
           child: TabBarView(
-            physics: const PageScrollPhysics(),
+            physics: widget.canMove
+                ? const PageScrollPhysics()
+                : NeverScrollableScrollPhysics(),
             controller: controller,
             children: [
               for (int i = 0; i < widget.tabs.length; ++i) widget.tabs[i].page

@@ -5,6 +5,7 @@ class DefaultAppBar extends StatelessWidget {
     this.centerTitle,
     this.leftTitle,
     this.leftTitleState,
+    this.rightWidget,
     this.hasPrevious = true,
     this.contentColor,
     this.backgroundColor,
@@ -13,6 +14,7 @@ class DefaultAppBar extends StatelessWidget {
   final String? centerTitle;
   final String? leftTitle;
   final Widget? leftTitleState;
+  final Widget? rightWidget;
   final bool hasPrevious;
   final Color? contentColor;
   final Color? backgroundColor;
@@ -36,52 +38,61 @@ class DefaultAppBar extends StatelessWidget {
           right: 24.0,
           top: statusBarHeight + topPadding,
           bottom: bottomPadding),
-      child: Row(
-        mainAxisAlignment: centerTitle != null
-            ? MainAxisAlignment.spaceBetween
-            : MainAxisAlignment.start,
-        children: [
-          if (hasPrevious)
-            GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
-              child: Icon(
-                Icons.arrow_back_ios_new,
-                size: 20.0,
-                color: contentColor ?? theme.textTheme.displayLarge!.color,
-              ),
-            )
-          else
-            SizedBox(),
-          if (centerTitle != null)
-            Text(
-              centerTitle!,
-              style: theme.textTheme.displayLarge!.copyWith(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w700,
-                color: contentColor ?? theme.textTheme.displayLarge!.color,
-              ),
-            ),
-          if (leftTitle != null)
-            Padding(
-              padding: EdgeInsets.only(left: 16.0, right: 4.0),
-              child: Row(
-                children: [
+      child: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Row(
+              mainAxisAlignment: centerTitle != null
+                  ? MainAxisAlignment.spaceBetween
+                  : MainAxisAlignment.start,
+              children: [
+                if (hasPrevious)
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 20.0,
+                      color:
+                          contentColor ?? theme.textTheme.displayLarge!.color,
+                    ),
+                  )
+                else
+                  SizedBox(),
+                if (centerTitle != null)
                   Text(
-                    leftTitle!,
+                    centerTitle!,
                     style: theme.textTheme.displayLarge!.copyWith(
-                      fontSize: 20.0,
+                      fontSize: 14.0,
                       fontWeight: FontWeight.w700,
-                      color: contentColor ?? theme.textTheme.displayLarge!.color,
+                      color:
+                          contentColor ?? theme.textTheme.displayLarge!.color,
                     ),
                   ),
+                if (leftTitle != null)
                   Padding(
-                      padding: EdgeInsets.only(left: 8), child: leftTitleState)
-                ],
-              ),
+                    padding: EdgeInsets.only(left: 16.0, right: 4.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          leftTitle!,
+                          style: theme.textTheme.displayLarge!.copyWith(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w700,
+                            color: contentColor ??
+                                theme.textTheme.displayLarge!.color,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(left: 8),
+                            child: leftTitleState)
+                      ],
+                    ),
+                  ),
+                if (centerTitle != null) SizedBox(width: 20.0),
+              ],
             ),
-          SizedBox(width: centerTitle != null ? 20.0 : 0.0)
-        ],
-      ),
+            if (rightWidget != null) rightWidget!
+          ]),
     );
   }
 }

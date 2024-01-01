@@ -7,50 +7,80 @@ import '../../../widgets/page/default_appbar.dart';
 import '../../../widgets/page/default_page.dart';
 import '../../../widgets/page/default_tabbar.dart';
 
-class PartMettingPage extends StatelessWidget {
+class PartMettingPage extends StatefulWidget {
+  @override
+  State<PartMettingPage> createState() => _PartMettingPageState();
+}
+
+class _PartMettingPageState extends State<PartMettingPage> {
+  final String editText = "편집하기";
+  final String saveText = "저장하기";
+  bool _isEditing = false;
+
   @override
   Widget build(BuildContext context) {
     return DefaultPage(
       appbar: DefaultAppBar(
         centerTitle: "파트회의 알림",
+        rightWidget: Container(
+          height: 20,
+          child: ElevatedButton(
+              onPressed: () => setState(() => _isEditing = !_isEditing),
+              child: Text(_isEditing ? editText : saveText,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .copyWith(fontSize: 12.0, fontWeight: FontWeight.w500)),
+              style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                    backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).dialogBackgroundColor),
+                  )),
+        ),
       ),
-      floatingActionButton: _getFloatingButton(context),
+      bottomButton: _isEditing
+          ? null
+          : ElevatedButton(
+              onPressed: () => {},
+              child: Text(
+                "삭제하기",
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(fontSize: 16.0, fontWeight: FontWeight.w700),
+              ),
+            ),
+      floatingActionButton: _isEditing ? _getFloatingButton(context) : null,
       content: DefaultTabBar(
+        canMove: _isEditing,
         isCenter: true,
         tabs: [
-          DefaultTab(
-              title: "디자인",
-              page: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: List.generate(
-                      2,
-                      (index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: _PartMettingBox("디자인 파트 회의 알림"),
-                          )))),
-          DefaultTab(
-              title: "아트",
-              page: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: List.generate(
-                      2,
-                      (index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: _PartMettingBox("아트 파트 회의 알림"),
-                          )))),
-          DefaultTab(
-              title: "프로그래밍",
-              page: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: List.generate(
-                      2,
-                      (index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: _PartMettingBox("프로그래밍 파트 회의 알림"),
-                          )))),
+          _getTabWidget("디자인"),
+          _getTabWidget("아트"),
+          _getTabWidget("프로그래밍"),
         ],
       ),
     );
+  }
+
+  DefaultTab _getTabWidget(String title) {
+    return DefaultTab(
+        title: title,
+        page: SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(
+                      15,
+                      (index) => Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: _PartMettingBox(
+                                "${title} 파트 회의 알림", _isEditing),
+                          ))),
+              SizedBox(height: 80)
+            ],
+          ),
+        ));
   }
 
   Widget _getFloatingButton(context) {
@@ -85,56 +115,88 @@ class PartMettingPage extends StatelessWidget {
 }
 
 class _PartMettingBox extends StatelessWidget {
-  const _PartMettingBox(this.title);
+  const _PartMettingBox(this.title, this.isEditing);
   final String title;
+  final bool isEditing;
   @override
   Widget build(BuildContext context) {
-    return RoundedBorder(
-      height: 56,
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) {
-        return SetNotificationPage(title);
-      })),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("수요일",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: MyThemes.primary80,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                  )),
-              SizedBox(width: 24),
-              Text(
-                "오전",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: RoundedBorder(
+        height: 56,
+        color: Colors.transparent,
+        hasShadow: false,
+        child: Row(
+          children: [
+            if (!isEditing)
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: RoundedBorder(
+                  height: 20,
+                  width: 20,
+                  color: Colors.red,
+                ),
               ),
-              SizedBox(width: 8),
-              Text(
-                "11:00",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500,
+            Expanded(
+              child: RoundedBorder(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                onTap: isEditing
+                    ? () =>
+                        Navigator.push(context, MaterialPageRoute(builder: (_) {
+                          return SetNotificationPage(title);
+                        }))
+                    : null,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("수요일",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: MyThemes.primary80,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            )),
+                        SizedBox(width: 24),
+                        Text(
+                          "오전",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          "11:00",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                      ],
                     ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 20,
+                      color: Color(0xFFABABAB),
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 20,
-            color: Color(0xFFABABAB),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
