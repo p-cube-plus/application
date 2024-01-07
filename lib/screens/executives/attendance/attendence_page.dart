@@ -44,10 +44,10 @@ class AttendencePage extends StatelessWidget {
             isCenter: true,
             tabHeight: 8,
             tabs: [
-              DefaultTab(title: "전체", page: AttendenceAll()),
-              DefaultTab(title: "출석", page: AttendenceAll()),
-              DefaultTab(title: "지각", page: AttendenceAll()),
-              DefaultTab(title: "불참", page: AttendenceAll()),
+              DefaultTab(title: "전체", page: ExecutiveAttendenceTab()),
+              DefaultTab(title: "출석", page: ExecutiveAttendenceTab()),
+              DefaultTab(title: "지각", page: ExecutiveAttendenceTab()),
+              DefaultTab(title: "불참", page: ExecutiveAttendenceTab()),
             ],
           ),
         ),
@@ -131,8 +131,11 @@ class _SelectAttendenceDayState extends State<SelectAttendenceDay> {
                               child: Icon(Icons.chevron_left))),
                       Text(
                         DateFormat('M월 d일').format(_curDate),
-                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.w500),
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       Padding(
                           padding: EdgeInsets.only(right: 22.5),

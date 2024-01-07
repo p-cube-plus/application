@@ -12,6 +12,7 @@ import 'package:p_cube_plus_application/providers/api_provider/user_warning_prov
 import 'package:p_cube_plus_application/providers/view_provider/fee_provider.dart';
 import 'package:p_cube_plus_application/providers/view_provider/setting_provider.dart';
 import 'package:p_cube_plus_application/providers/view_provider/theme_provider.dart';
+import 'package:p_cube_plus_application/providers/view_provider/filter_provider.dart';
 import 'package:p_cube_plus_application/screens/executives/executive_page.dart';
 import 'package:p_cube_plus_application/screens/login/login_page.dart';
 import 'package:p_cube_plus_application/utilities/theme.dart';
@@ -35,6 +36,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => UserProjectProvider()),
       ChangeNotifierProvider(create: (_) => UserWarningProvider()),
       ChangeNotifierProvider(create: (_) => UserProjectListProvider()),
+      ChangeNotifierProvider(create: (_) => FilterProvider()),
     ],
     child: MyApp(),
   ));

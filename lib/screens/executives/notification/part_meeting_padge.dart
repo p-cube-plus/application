@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:p_cube_plus_application/utilities/theme.dart';
 import 'package:p_cube_plus_application/screens/executives/notification/set_notification_page.dart';
+import '../../../utilities/contants.dart' as Constants;
 
 import '../../../widgets/common/rounded_border.dart';
 import '../../../widgets/page/default_appbar.dart';
@@ -114,10 +115,18 @@ class _PartMettingPageState extends State<PartMettingPage> {
   }
 }
 
-class _PartMettingBox extends StatelessWidget {
+class _PartMettingBox extends StatefulWidget {
   const _PartMettingBox(this.title, this.isEditing);
   final String title;
   final bool isEditing;
+
+  @override
+  State<_PartMettingBox> createState() => _PartMettingBoxState();
+}
+
+class _PartMettingBoxState extends State<_PartMettingBox> {
+  bool _isSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -126,26 +135,27 @@ class _PartMettingBox extends StatelessWidget {
         height: 56,
         color: Colors.transparent,
         hasShadow: false,
+        onTap: () => setState(() => _isSelected = !_isSelected),
         child: Row(
           children: [
-            if (isEditing)
+            if (widget.isEditing)
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: RoundedBorder(
-                  height: 20,
-                  width: 20,
-                  color: Colors.red,
+                  child: Constants.Icons.GetIcon(_isSelected
+                      ? Constants.Icons.list_active
+                      : Constants.Icons.list_inactive),
                 ),
               ),
             Expanded(
               child: RoundedBorder(
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                onTap: isEditing
+                onTap: widget.isEditing
                     ? null
                     : () =>
                         Navigator.push(context, MaterialPageRoute(builder: (_) {
-                          return SetNotificationPage(title);
+                          return SetNotificationPage(widget.title);
                         })),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

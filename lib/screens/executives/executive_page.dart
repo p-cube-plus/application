@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p_cube_plus_application/screens/executives/attendance/attendence_page.dart';
 import 'package:p_cube_plus_application/screens/executives/notification/executive_notification_page.dart';
 import '../../widgets/common/rounded_border.dart';
 import '../../widgets/page/default_appbar.dart';
@@ -31,7 +32,8 @@ class ExecutivePage extends StatelessWidget {
               children: [
                 _getButton(context, "assets/images/member.png", "회원관리", null),
                 SizedBox(width: 16),
-                _getButton(context, "assets/images/attendance.png", "출석", null),
+                _getButton(context, "assets/images/attendance.png", "출석",
+                    AttendencePage()),
               ],
             ),
             SizedBox(height: 16),

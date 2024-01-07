@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-import 'package:p_cube_plus_application/utilities/theme.dart';
+import 'package:p_cube_plus_application/providers/view_provider/filter_provider.dart';
+import 'package:p_cube_plus_application/widgets/common/default_user_search.dart';
 import 'package:p_cube_plus_application/widgets/common/rounded_border.dart';
-import '../../../utilities/contants.dart' as Constants;
-import '../../../widgets/common/default_bottomsheet.dart';
 
-class AttendenceAll extends StatelessWidget {
+// 데이터 provider로 가져오고 아래 타입 중 하나로 부르기
+// AttendanceAllSearchFilter
+// AttendanceCompleteSearchFilter
+// AttendanceLateSearchFilter
+// AttendanceAbsentSearchFilter
+//     T newFilter =
+        // filterProvider.GetFilter<T>();
+class ExecutiveAttendenceTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,10 +32,11 @@ class AttendenceAll extends StatelessWidget {
                     children: [
                       Text(
                         "회원 이름을 검색해보세요",
-                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.displaySmall!.copyWith(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                       ),
                       Image.asset(
                         "assets/images/search.png",
@@ -42,33 +48,7 @@ class AttendenceAll extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8),
-              RoundedBorder(
-                onTap: () => showModalBottomSheet(
-                    shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(20))),
-                    context: context,
-                    builder: (context) => _MakeBottomsheet(context)),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                radius: 50,
-                color: MyThemes.primary20,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Constants.Icons.GetIcon(Constants.Icons.filter),
-                    SizedBox(width: 8),
-                    Text(
-                      "필터",
-                      style: TextStyle(
-                        color: MyThemes.primary80,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              DefaultUserSearch<AttendanceAllSearchFilter>(),
             ],
           ),
           SizedBox(height: 9),
@@ -210,117 +190,6 @@ class AttendenceAll extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  _MakeBottomsheet(context) {
-    return DefaultBottomsheet(
-      title: "필터",
-      contents: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("회원 분류",
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      )),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("활동 회원만 보기",
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          )),
-                  FlutterSwitch(
-                    width: 32,
-                    height: 16,
-                    activeColor: Theme.of(context).primaryColor,
-                    value: true,
-                    toggleSize: 10,
-                    borderRadius: 50,
-                    padding: 2,
-                    onToggle: (value) {},
-                  ),
-                ],
-              ),
-              SizedBox(height: 40),
-              Text("정렬",
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      )),
-              SizedBox(height: 16),
-              SizedBox(
-                height: 36,
-                child: Expanded(
-                  child: RoundedBorder(
-                    hasShadow: false,
-                    radius: 50,
-                    color: Theme.of(context).textTheme.displaySmall!.color,
-                    padding: const EdgeInsets.all(1),
-                    child: RoundedBorder(
-                      radius: 50,
-                      hasShadow: false,
-                      color: Theme.of(context).colorScheme.background,
-                      padding: const EdgeInsets.all(3),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: RoundedBorder(
-                              radius: 50,
-                              padding: const EdgeInsets.symmetric(vertical: 6),
-                              color: MyThemes.primary20,
-                              child: Text(
-                                "이름 순",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: MyThemes.primary80,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: RoundedBorder(
-                              radius: 0,
-                              hasShadow: false,
-                              color: Theme.of(context).colorScheme.background,
-                              child: Text(
-                                "회원구분 순",
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 32),
-              SizedBox(
-                height: 48,
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "필터 적용하기",
-                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                    )),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

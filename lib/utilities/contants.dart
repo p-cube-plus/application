@@ -34,6 +34,9 @@ class Icons {
   static String filter = "assets/images/icons/filter.svg";
   static String watch = "assets/images/icons/watch.svg";
 
+  static String list_active = "assets/images/icons/list_check_active.svg";
+  static String list_inactive = "assets/images/icons/list_check_inactive.svg";
+
   static Widget GetIcon(String icon, {Color? color}) =>
       SvgPicture.asset(icon, color: color);
 }
