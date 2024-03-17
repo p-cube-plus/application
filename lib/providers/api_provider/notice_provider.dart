@@ -1,6 +1,6 @@
 import 'package:p_cube_plus_application/models/notification_node.dart';
 import 'package:p_cube_plus_application/providers/api_provider/base/provider_base.dart';
-import 'package:p_cube_plus_application/services/user_api.dart';
+import 'package:p_cube_plus_application/services/notice_api.dart';
 
 enum SortType {
   Ascending,
@@ -34,11 +34,15 @@ class NoticeProvider extends ApiProviderBase<List<NotificationNode>> {
   void _sort() {
     switch (_sortType) {
       case SortType.Ascending:
-        data.sort((a, b) => (a.date).compareTo(b.date));
+        data.sort((a, b) => (a.date.toString()).compareTo(b.date.toString()));
         break;
       case SortType.Descending:
-        data.sort((a, b) => (b.date).compareTo(a.date));
+        data.sort((a, b) => (b.date.toString()).compareTo(a.date.toString()));
         break;
     }
   }
+
+  void readNotification() async {}
+
+  void deleteNotification() async {}
 }

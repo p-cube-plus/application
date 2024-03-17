@@ -107,7 +107,7 @@ class NoticeBoxWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    box.name,
+                    box.schedule.toString(),
                     style: Theme.of(context).textTheme.headline1!.copyWith(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w700,
@@ -126,7 +126,7 @@ class NoticeBoxWidget extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                box.description,
+                box.message.toString(),
                 style: Theme.of(context).textTheme.headline1!.copyWith(
                       fontSize: 11.0,
                       fontWeight: FontWeight.w400,
@@ -135,7 +135,7 @@ class NoticeBoxWidget extends StatelessWidget {
             ],
           ),
           Text(
-            DateFormat("hh:mm").format(DateTime.parse(box.date)),
+            DateFormat("hh:mm").format(DateTime.parse(box.date.toString())),
             style: Theme.of(context).textTheme.headline2!.copyWith(
                   fontSize: 11.0,
                   fontWeight: FontWeight.w400,
