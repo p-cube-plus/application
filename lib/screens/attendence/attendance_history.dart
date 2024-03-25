@@ -8,6 +8,15 @@ class AttendanceHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultFutureBuilder(
         fetchData: AttendanceCheckApi(1).get(),
-        showFunction: (data) => DefaultPage());
+        showFunction: (data) => DefaultPage(
+          title: "출석 현황",
+          content: Column(
+            children: [
+              Text("정기회의 출석 현황"),
+              Text("지난 정기회의 출석 현황을 확인할 수 있어요."),
+
+            ],
+          ),
+        ));
   }
 }
